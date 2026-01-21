@@ -7,11 +7,7 @@
 <body>
 <script>
   const params = window.location.search;
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('twitchAuth', params);
-  } else {
-    window.location.href = "viewersfans://twitch" + params;
-  }
+  window.location.href = "viewersfans://viewersfans.app/twitch" + params;
 </script>
 </body>
 </html>
