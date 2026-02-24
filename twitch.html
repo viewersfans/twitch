@@ -11,22 +11,19 @@
   const urlParams = new URLSearchParams(params);
   const code = urlParams.get('code');
   
-  // Limpiar URL inmediatamente (no mostrar el código)
-  if (window.history.replaceState) {
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-  
   // Detectar móvil
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
-  // Redirigir INMEDIATAMENTE
   if (isMobile) {
-    // MÓVIL: Usar esquema original
+    // MÓVIL: igual que antes
     window.location.href = "viewersfans://viewersfans.app/twitch" + params;
   } else {
-    // WEB: Redirigir al home con el código
+    // WEB: Guardar código en sessionStorage y redirigir a URL limpia
     if (code) {
-      window.location.href = "https://viewersfans.flutterflow.app/?twitch_code=" + code;
+      // Guardar el código en sessionStorage
+      sessionStorage.setItem('twitch_code', code);
+      // Redirigir a la app SIN el código en la URL
+      window.location.href = "https://viewersfans.flutterflow.app/";
     } else {
       window.location.href = "https://viewersfans.flutterflow.app/";
     }
